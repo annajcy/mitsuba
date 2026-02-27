@@ -2552,7 +2552,9 @@ void export_core() {
 }
 
 BOOST_PYTHON_MODULE(mitsuba) {
+#if PY_VERSION_HEX < 0x03090000
     PyEval_InitThreads();
+#endif
 
     bp::object package = bp::scope();
     package.attr("__path__") = "mitsuba";

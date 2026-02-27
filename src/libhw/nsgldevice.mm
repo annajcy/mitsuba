@@ -21,6 +21,11 @@
 #include <mitsuba/hw/nsglkeys.h>
 #include <mitsuba/hw/nsglrenderer.h>
 
+#if defined(__clang__)
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+#endif
+
 using namespace mitsuba;
 
 #define DEFINE_KEY(xsym, sym) m_keymap[xsym] = Device::sym
@@ -606,3 +611,7 @@ void NSGLDevice::makeCurrent(Renderer *renderer) {
 
 MTS_IMPLEMENT_CLASS(NSGLDevice, false, Device)
 MTS_NAMESPACE_END
+
+#if defined(__clang__)
+#pragma clang diagnostic pop
+#endif

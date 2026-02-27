@@ -19,6 +19,11 @@
 #include <mitsuba/hw/nsgldevice.h>
 #include <Cocoa/Cocoa.h>
 
+#if defined(__clang__)
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+#endif
+
 MTS_NAMESPACE_BEGIN
 
 NSGLSession::NSGLSession()
@@ -102,3 +107,7 @@ void NSGLSession::processEventsBlocking(bool &stop) {
 
 MTS_IMPLEMENT_CLASS(NSGLSession, false, Session)
 MTS_NAMESPACE_END
+
+#if defined(__clang__)
+#pragma clang diagnostic pop
+#endif

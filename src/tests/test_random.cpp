@@ -28,6 +28,7 @@
 
 #include <limits>
 #include <vector>
+#include <iterator>
 #include <functional>
 #include <algorithm>
 
@@ -212,9 +213,15 @@ struct rnd_traits<uint32_t> {
 // Fake iterator which never moves and only returns contant references
 // to its value.
 template <typename T>
-class fake_iterator : public std::iterator<std::input_iterator_tag, T>
+class fake_iterator
 {
 public:
+    typedef std::input_iterator_tag iterator_category;
+    typedef T value_type;
+    typedef ptrdiff_t difference_type;
+    typedef const T *pointer;
+    typedef const T &reference;
+
     const T value;
 
     // Constructs the fake iterator with a given value
