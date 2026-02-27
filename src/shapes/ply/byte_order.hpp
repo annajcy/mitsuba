@@ -1,6 +1,8 @@
 #ifndef PLY_BYTE_ORDER_HPP_INCLUDED
 #define PLY_BYTE_ORDER_HPP_INCLUDED
 
+#include <cstddef>
+#include <utility>
 namespace ply {
 
 #if defined(PLY_BIG_ENDIAN) || defined(PLY_LITTLE_ENDIAN)

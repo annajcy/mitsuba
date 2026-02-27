@@ -22,6 +22,21 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+# copy the generated compile_commands.json to the project root for better integration with IDEs
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_COMMANDS_OUTPUT "${CMAKE_BINARY_DIR}/compile_commands.json")
+if(DEFINED CMAKE_CFG_INTDIR AND NOT "${CMAKE_CFG_INTDIR}" STREQUAL ".")
+    set(CMAKE_COMMANDS_OUTPUT "${CMAKE_BINARY_DIR}/${CMAKE_CFG_INTDIR}/compile_commands.json")
+endif()
+message("CMAKE_COMMANDS_OUTPUT: ${CMAKE_COMMANDS_OUTPUT}")
+
+add_custom_target(COPY_COMPILE_COMMANDS ALL
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "${CMAKE_COMMANDS_OUTPUT}"
+        "${CMAKE_SOURCE_DIR}/build/compile_commands.json"
+    DEPENDS ${CMAKE_COMMANDS_OUTPUT}
+    COMMENT "Copying compile_commands.json to build folder"
+)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 

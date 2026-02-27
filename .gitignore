@@ -50,3 +50,6 @@ mitsuba.*.log
 .project
 
 /build
+.cache
+.mypy_cache
+.pytest_cache
