@@ -7,11 +7,19 @@ namespace ply {
 #  error
 #endif
 
-#if (defined(__powerpc) || defined(__powerpc__) || defined(__POWERPC__) || defined(__ppc__) || defined(_M_PPC) || defined(__ARCH_PPC))
+#if defined(__BYTE_ORDER__) && defined(__ORDER_BIG_ENDIAN__) && defined(__ORDER_LITTLE_ENDIAN__)
+#  if (__BYTE_ORDER__ == __ORDER_BIG_ENDIAN__)
+#    define PLY_BIG_ENDIAN
+#  elif (__BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__)
+#    define PLY_LITTLE_ENDIAN
+#  else
+#    error
+#  endif
+#elif (defined(__powerpc) || defined(__powerpc__) || defined(__POWERPC__) || defined(__ppc__) || defined(_M_PPC) || defined(__ARCH_PPC))
 #  define PLY_BIG_ENDIAN
 #elif (defined(i386) || defined(__i386__) || defined(__i386) || defined(_M_IX86) || defined(_X86_) || defined(__THW_INTEL__) || defined(__I86__) || defined(__INTEL__)) \
    || (defined(__amd64__) || defined(__amd64) || defined(__x86_64__) || defined(__x86_64) || defined(_M_X64)) \
-   || defined(__ARMEL__)
+  || defined(__ARMEL__) || defined(__aarch64__) || defined(__AARCH64EL__) || defined(_M_ARM64)
 #  define PLY_LITTLE_ENDIAN
 #else
 #  error

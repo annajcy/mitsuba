@@ -1,0 +1,6 @@
+mts_add_plugin(isotropic isotropic.cpp)
+mts_add_plugin(hg hg.cpp)
+mts_add_plugin(rayleigh rayleigh.cpp)
+mts_add_plugin(kkay kkay.cpp)
+mts_add_plugin(microflake microflake.cpp)
+mts_add_plugin(mixturephase mixturephase.cpp)

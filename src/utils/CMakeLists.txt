@@ -1,0 +1,5 @@
+mts_add_plugin(addimages addimages.cpp)
+mts_add_plugin(joinrgb joinrgb.cpp)
+mts_add_plugin(cylclip cylclip.cpp)
+mts_add_plugin(kdbench kdbench.cpp)
+mts_add_plugin(tonemap tonemap.cpp)

@@ -25,7 +25,9 @@
 struct GLEWContextStruct;
 
 /// Get the per-thread context for GLEW-MX
+#if defined(GLEW_MX)
 extern MTS_EXPORT_HW GLEWContextStruct *glewGetContext();
+#endif
 
 MTS_NAMESPACE_BEGIN
 

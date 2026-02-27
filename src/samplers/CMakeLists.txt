@@ -1,0 +1,6 @@
+mts_add_plugin(independent independent.cpp)
+mts_add_plugin(stratified stratified.cpp)
+mts_add_plugin(halton halton.cpp faure.cpp)
+mts_add_plugin(hammersley hammersley.cpp faure.cpp)
+mts_add_plugin(ldsampler ldsampler.cpp)
+mts_add_plugin(sobol sobol.cpp sobolseq.cpp)

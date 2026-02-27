@@ -18,7 +18,11 @@
 
 #include <mitsuba/mitsuba.h>
 #if defined(__OSX__)
+#if __has_include(<OpenGL/glew.h>)
 #include <OpenGL/glew.h>
+#else
+#include <GL/glew.h>
+#endif
 #else
 #include <GL/glew.h>
 #endif

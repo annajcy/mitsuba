@@ -1,0 +1,22 @@
+mts_add_plugin(ao direct/ao.cpp)
+mts_add_plugin(direct direct/direct.cpp)
+mts_add_plugin(path path/path.cpp)
+mts_add_plugin(volpath path/volpath.cpp)
+mts_add_plugin(volpath_simple path/volpath_simple.cpp)
+mts_add_plugin(ptracer ptracer/ptracer.cpp ptracer/ptracer_proc.cpp)
+
+mts_add_plugin(photonmapper photonmapper/photonmapper.cpp photonmapper/bre.cpp)
+mts_add_plugin(ppm photonmapper/ppm.cpp)
+mts_add_plugin(sppm photonmapper/sppm.cpp)
+
+mts_add_plugin(vpl vpl/vpl.cpp)
+mts_add_plugin(adaptive misc/adaptive.cpp)
+mts_add_plugin(irrcache misc/irrcache.cpp misc/irrcache_proc.cpp)
+mts_add_plugin(multichannel misc/multichannel.cpp)
+mts_add_plugin(field misc/field.cpp)
+mts_add_plugin(motion misc/motion.cpp)
+
+mts_add_bidir_plugin(bdpt bdpt/bdpt.cpp bdpt/bdpt_wr.cpp bdpt/bdpt_proc.cpp)
+mts_add_bidir_plugin(pssmlt pssmlt/pssmlt.cpp pssmlt/pssmlt_sampler.cpp pssmlt/pssmlt_proc.cpp)
+mts_add_bidir_plugin(mlt mlt/mlt.cpp mlt/mlt_proc.cpp)
+mts_add_bidir_plugin(erpt erpt/erpt.cpp erpt/erpt_proc.cpp)

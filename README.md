@@ -20,3 +20,31 @@ For compilation, usage, and a full plugin reference, please see the [official do
 ## Releases and scenes
 
 Pre-built binaries, as well as example scenes, are available on the [Mitsuba website](http://mitsuba-renderer.org/download.html).
+
+## Experimental CMake + Conan bootstrap
+
+An initial CMake-based build path is now available for migration work.
+
+Current scope:
+- Core shared libraries (`mitsuba-core`, `mitsuba-render`, `mitsuba-hw`, `mitsuba-bidir`)
+- Main binaries (`mitsuba`, `mtssrv`, `mtsutil`)
+- BSDF plugin group (`src/bsdfs`)
+- Test plugins (`src/tests/test_*.cpp` as loadable modules)
+
+### Configure dependencies with Conan (Conan 2.x)
+
+```bash
+conan profile detect --force
+conan install . --build=missing -s build_type=Release
+```
+
+### Configure and build with CMake presets
+
+```bash
+cmake --preset conan-release
+cmake --build --preset conan-release
+```
+
+Artifacts are emitted under `out/build/<preset>/binaries` and plugins under `out/build/<preset>/binaries/plugins`.
+
+This path is intentionally incremental and coexists with the legacy SCons build until full migration is complete.

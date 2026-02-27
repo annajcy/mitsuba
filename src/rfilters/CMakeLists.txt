@@ -1,0 +1,6 @@
+mts_add_plugin(box box.cpp)
+mts_add_plugin(tent tent.cpp)
+mts_add_plugin(lanczos lanczos.cpp)
+mts_add_plugin(mitchell mitchell.cpp)
+mts_add_plugin(catmullrom catmullrom.cpp)
+mts_add_plugin(gaussian gaussian.cpp)

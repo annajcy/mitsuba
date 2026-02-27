@@ -17,6 +17,8 @@
 */
 
 #include <mitsuba/mitsuba.h>
+#include <pthread.h>
+#include <unistd.h>
 #import <Cocoa/Cocoa.h>
 
 MTS_NAMESPACE_BEGIN

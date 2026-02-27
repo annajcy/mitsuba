@@ -23,8 +23,17 @@
 #include <mitsuba/render/gkdtree.h>
 #include <mitsuba/core/warp.h>
 #include <mitsuba/core/random.h>
+#include <chrono>
 
 MTS_NAMESPACE_BEGIN
+
+inline uint64_t mts_timestamp_ticks() {
+#if defined(__i386__) || defined(__x86_64__)
+    return rdtsc();
+#else
+    return (uint64_t) std::chrono::steady_clock::now().time_since_epoch().count();
+#endif
+}
 
 /// Use a simple hashed 8-entry mailbox per thread
 #define MTS_KD_MAILBOX_ENABLED 1
@@ -344,7 +353,7 @@ protected:
 
         uint32_t numTraversals = 0;
         uint32_t numIntersections = 0;
-        uint64_t timer = rdtsc();
+        uint64_t timer = mts_timestamp_ticks();
         bool foundIntersection = false;
 
         const KDNode * __restrict currNode = m_nodes;
@@ -425,7 +434,7 @@ protected:
         }
 
         return RayStatistics(foundIntersection, numTraversals,
-                numIntersections, rdtsc() - timer);
+                numIntersections, mts_timestamp_ticks() - timer);
     }
 
     /**

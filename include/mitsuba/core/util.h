@@ -24,6 +24,8 @@
 
 #if defined(__MSVC__)
 # include <intrin.h>
+#else
+# include <sys/time.h>
 #endif
 
 MTS_NAMESPACE_BEGIN
@@ -210,6 +212,12 @@ static FINLINE uint64_t rdtsc(void) {
     gettimeofday(&tv, NULL);
     return static_cast<uint64_t>((tv.tv_sec + tv.tv_usec * 1e-6) * 1.5e9);
 #endif
+}
+#else
+static FINLINE uint64_t rdtsc(void) {
+    timeval tv;
+    gettimeofday(&tv, NULL);
+    return static_cast<uint64_t>((tv.tv_sec + tv.tv_usec * 1e-6) * 1.5e9);
 }
 #endif
 #elif defined(__MSVC__)

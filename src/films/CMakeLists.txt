@@ -1,0 +1,11 @@
+mts_add_plugin(mfilm mfilm.cpp cnpy.cpp)
+mts_add_plugin(ldrfilm ldrfilm.cpp)
+mts_add_plugin(hdrfilm hdrfilm.cpp)
+
+if(TARGET OpenEXR::OpenEXR OR TARGET openexr::openexr)
+    if(TARGET Imath::Imath)
+        message(WARNING "Disabling tiledhdrfilm: incompatible with OpenEXR/Imath 3.x global half alias")
+    else()
+        mts_add_plugin(tiledhdrfilm tiledhdrfilm.cpp)
+    endif()
+endif()

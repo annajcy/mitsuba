@@ -18,7 +18,11 @@
 
 #include <mitsuba/mitsuba.h>
 #if defined(__OSX__)
+#if __has_include(<OpenGL/glew.h>)
 #include <OpenGL/glew.h>
+#else
+#include <GL/glew.h>
+#endif
 #else
 #include <GL/glew.h>
 #endif
@@ -30,11 +34,13 @@
 #include <mitsuba/hw/font.h>
 #include <boost/algorithm/string.hpp>
 
+#if defined(GLEW_MX)
 static mitsuba::PrimitiveThreadLocal<GLEWContextStruct> glewContext;
 
 GLEWContextStruct *glewGetContext() {
     return &glewContext.get();
 }
+#endif
 
 MTS_NAMESPACE_BEGIN
 
